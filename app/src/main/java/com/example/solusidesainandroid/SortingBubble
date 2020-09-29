@@ -1,0 +1,43 @@
+package com.example.solusidesainandroid;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+public class SortingBubble {
+
+    public static void main(String[] args) {
+        int[] array = {4, 9, 7, 5, 8, 9, 3, 3};
+        sortBubble(array);
+    }
+
+    private static void sortBubble(int[] input) {
+        int length = input.length;
+        int tmp;
+        boolean swap;
+        int k = 0;
+
+        for (int i = 0; i < length; i++) {
+            swap = true;
+            for (int j = 1; j < length - i; j++) {
+                if (input[j - 1] > input[j]) {
+                    k = k + 1;
+                    tmp = input[j - 1];
+                    input[j - 1] = input[j];
+                    input[j] = tmp;
+                    swap = false;
+                    System.out.print(""+ k +". ["+input[j-1]+ ","+ tmp +"] -> ");
+                    printArray(input);
+                }
+            }
+            if (swap) break;
+        }
+        System.out.println("\nJumlah Swap : "+ k);
+    }
+
+    private static void printArray(int[] data) {
+        String result = Arrays.stream(data)
+                .mapToObj(String::valueOf)
+                .collect(Collectors.joining(" "));
+        System.out.println(result);
+    }
+}
